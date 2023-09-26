@@ -1,4 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+    .headerDiv{
+        @apply flex items-center gap-3 border-[1px] hover:border-orange-500
+        text-gray-500 p-1.5 rounded-full bg-bgLight hover:bg-white border-gray-200 duration-200
+    }
+
+    .register{
+        @apply text-xl justify-center cursor-pointer gap-x-1 px-3 py-1.5 hover:bg-slate-900 flex items-center relative bg-black text-slate-100 hover:text-white 
+        rounded-full p-1.5 border-black hover:border-orange-600
+    }
+
+    .cart{
+        @apply flex items-center justify-center shadow-xl shadow-black text-sm w-5 h-5 font-semibold absolute -right-2 -top-1 text-orange-600 rounded-full bg-white
+    }
+}
