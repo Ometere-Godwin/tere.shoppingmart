@@ -1,6 +1,9 @@
 import Header from '../../components/Header'
+import Layout from '../../components/Layout'
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 export const metadata: Metadata = {
@@ -15,9 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='bodyFont w-full bg-main-bg text-darkText'>
+      <body className='font-bodyFont w-full bg-main-bg text-darkText'>
+        <Layout>
         <Header/>
-        {children}</body>
+        {children}
+        </Layout>
+      </body>
     </html>
   )
 }

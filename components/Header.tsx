@@ -1,12 +1,18 @@
+"use client"
+
 import React from 'react'
 import Container from './Container'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiLogOut} from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
+    const {data:session} = useSession();
+    console.log(session);
+
     return (
         <div className='bg-bodyColor h-20 '>
             <Container className='flex items-center justify-between h-full md:gap-x-5 md:justify-start'>
@@ -33,12 +39,10 @@ export default function Header() {
                 </div>
 
                 {/* Login/ Register */}
-                <div className=''>
-                    <Link href='#' className='headerDiv'>
-                        <span className='text-2xl'><AiOutlineUser /></span>
-                        <p className='text-sm font-semibold'>Login/Register</p>
-                    </Link>
-                </div>
+                <div className='headerDiv cursor-pointer' onClick={() => signIn()}>                    
+                    <span className='text-2xl'><AiOutlineUser /></span>
+                    <p className='text-sm font-semibold'>Login/Register</p>                   
+            </div>
 
                 {/* Shopping Cart */}
                 <div className='register '>
@@ -48,6 +52,26 @@ export default function Header() {
                     <label>$500</label>
                     <small className='cart'>0</small>
                 </div>
+
+                {/* User Image */}
+                {
+                    session && <Image src={session?.user?.image as string} 
+                    height={30} 
+                    width={30} 
+                    alt=''
+                    className='rounded-full object-cover'/>
+                }
+
+                {/* Logout button */}
+                {
+                    session && (
+                        <div 
+                        onClick= {() => signOut()} className='headerDiv cursor-pointer'>
+                    <span className='text-2xl'><FiLogOut/></span>
+                    <p className='text-sm font-semibold'>Logout</p>
+                </div>
+                    )
+                }
             </Container>
         </div>
     )

@@ -18,4 +18,9 @@
     .cart{
         @apply flex items-center justify-center shadow-xl shadow-black text-sm w-5 h-5 font-semibold absolute -right-2 -top-1 text-orange-600 rounded-full bg-white
     }
+
+    .bannerButton{
+        @apply text-sm rounded-full bg-slate-200 py-3 px-6
+        hover:bg-white duration-200 font-semibold uppercase
+    }
 }
