@@ -17,8 +17,7 @@ export default function Banner() {
         className="p-3 bg-slate-100 rounded-full
             hover:text-orange-600 hover:bg-white 
             cursor-pointer duration-200 text-2xl 
-            flex items-center justify-center z-20 absolute left-5 top-1/2"
-      >
+            flex items-center justify-center z-20 absolute left-5 top-1/2">
         <PiCaretLeftLight />
       </div>
     );
