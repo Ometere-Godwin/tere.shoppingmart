@@ -3,9 +3,14 @@ import { ItemProps } from "../type";
 import Image from "next/image";
 import { calculatePercentage } from "@/helpers";
 import FormattedPrice from "./FormattedPrice";
+import {IoIosStar} from "react-icons/io";
 
 export default function ProductsData({ item }: ItemProps) {
-  console.log(item);
+  const startArray = Array.from({length: item?.rating}, (_, index) => (
+    <span key={index} className="text-yellow-400">
+        <IoIosStar/>
+    </span>
+  ))
   return (
     <div className="w-full rounded-lg overflow-hidden">
       <div>
@@ -57,7 +62,19 @@ export default function ProductsData({ item }: ItemProps) {
                     </p>
                 </div>
             </div>
-        </div>
+            <div className="flex items-center justify-between">
+            
+            {/* Add to cart button */}
+            <button className="bg-orange-600 font-bold 
+            rounded-full text-slate-100 py-2 px-4 
+            hover:bg-orange-800 tracking-wide hover:text-white">
+                Add to Cart
+            </button>
+
+            {/* Star icons */}
+            <div className="flex items-center gap-x-1">{startArray}</div>
+            </div>
+        </div>    
       </div>
     </div>
   );
