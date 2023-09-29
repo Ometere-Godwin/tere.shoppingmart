@@ -14,7 +14,7 @@ export default function Header() {
     console.log(session);
 
     return (
-        <div className='bg-bodyColor h-20 '>
+        <div className='bg-bodyColor h-20 sticky top-0 z-10'>
             <Container className='flex items-center justify-between h-full md:gap-x-5 md:justify-start'>
                 <Link href="/">
                     <Image
