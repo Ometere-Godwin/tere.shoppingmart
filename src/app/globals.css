@@ -27,4 +27,14 @@
     .bannerGradient{
         @apply absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10
     }
+
+    .socialLink{
+        @apply bg-slate-100 p-1 text-darkText inline-flex
+        items-center justify-center rounded-md text-lg hover:bg-orange-600
+        hover:text-white cursor-pointer duration-200
+    }
+
+    .footerLinks{
+        @apply hover:text-orange-600 cursor-pointer duration-200
+    }
 }
