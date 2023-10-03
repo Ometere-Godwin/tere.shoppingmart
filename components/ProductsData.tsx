@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import { ItemProps } from "../type";
 import Image from "next/image";
 import { calculatePercentage } from "@/helpers";
@@ -18,6 +18,7 @@ export default function ProductsData({ item }: ItemProps) {
           className=" w-full h-96 
             group overflow-hidden relative "
         >
+          <Link href={{pathname: "/product", query: { _id: item?._id}}}>
           <Image
             src={item?.image}
             alt="Poducts"
@@ -26,6 +27,7 @@ export default function ProductsData({ item }: ItemProps) {
             className="w-full h-full object-cover group-hover:scale-110 
             duration-200 rounded-t-lg cursor-pointer"
           />
+          </Link>
 
           {item?.isNew && (
             <span
