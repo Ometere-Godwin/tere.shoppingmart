@@ -51,6 +51,20 @@ export default function PaymentForm() {
                 </p>
             </div>
         </div>
+
+        {/* Checkout */}
+        <div>
+        {
+            userInfo? (
+                <button className='bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-orange-950 duration-200'>Proceed to checkout</button>
+            ) : (
+                <div className=''>
+                    <button className='bg-black text-slate-100 mt-4 py-3 px-6 hover:bg-red-600'>Proceed to checkout</button>
+                    <p>Please login to continue</p>
+                </div>
+            )
+        }
+        </div>
     </div>
   )
 }
