@@ -1,11 +1,15 @@
 "use client";
+
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
 import { IoMdCart } from "react-icons/io";
 import {MdFavoriteBorder} from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/shoppingSlice";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function SingleProduct({product} : any) {
-    console.log(product)
+    const dispatch = useDispatch()
   return (
     <div className="grid lg:grid-cols-2 bg-white gap-5 p-4 rounded-lg">
         <div>
@@ -35,7 +39,12 @@ export default function SingleProduct({product} : any) {
                 </span>
 
                 <div className="flex items-center cursor-pointer group">
-                    <button className="bg-darkText text-slate-100 px-6 py-3 text-sm 
+                    <button
+                    onClick={() =>dispatch(addToCart(product)) &&
+                        toast.success(
+                          `${product?.title.substring(0, 15)} added successfully!`
+                        )}
+                    className="bg-darkText text-slate-100 px-6 py-3 text-sm 
                      uppercase flex items-center border-r-[1px] border-r-slate-500">
                         add to cart
                     </button>
@@ -55,6 +64,7 @@ export default function SingleProduct({product} : any) {
                     Add to wishlist
                 </p>
         </div>
+        <Toaster/>
     </div>
   )
 }

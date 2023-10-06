@@ -58,6 +58,7 @@ export default function Banner() {
             src={young}
             alt="young"
             className="h-[562px] w-full object-contain"
+            priority
           />
           <BannerText text="Special Offer" />
         </div>

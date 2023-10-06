@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from './Container'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,10 +8,23 @@ import { FiSearch, FiLogOut} from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useSelector } from 'react-redux';
+import { ProductsProps, StateProps } from '../type';
+import FormattedPrice from './FormattedPrice';
 
 export default function Header() {
     const {data:session} = useSession();
-    console.log(session);
+    const {productData}= useSelector((state: StateProps) => state.shopping);
+    const [totalAmount, setTotalAmount] = useState(0);
+
+    useEffect(() => {
+        let amount = 0;
+        productData.map((item:ProductsProps) => {
+            amount += item.price * item.quantity;
+            return;
+        })
+        setTotalAmount(amount)
+    },[productData]);
 
     return (
         <div className='bg-bodyColor h-20 sticky top-0 z-10'>
@@ -39,19 +52,27 @@ export default function Header() {
                 </div>
 
                 {/* Login/ Register */}
-                <div className='headerDiv cursor-pointer' onClick={() => signIn()}>                    
+                {!session && (
+                    <div className='headerDiv cursor-pointer' onClick={() => signIn()}>                    
                     <span className='text-2xl'><AiOutlineUser /></span>
                     <p className='text-sm font-semibold'>Login/Register</p>                   
             </div>
+                )}
 
                 {/* Shopping Cart */}
-                <div className='register '>
+                <Link href={"/cart"}>
+                <div className='register'>
                     <span className='text-white'>
                         <FaShoppingCart />
                     </span>
-                    <label>$500</label>
-                    <small className='cart'>0</small>
+                    <label className='cursor-pointer'>
+                        <FormattedPrice amount = {totalAmount ? totalAmount : 0}/>
+                    </label>
+                    <small className='cart'>
+                    {productData ? productData?.length : 0}
+                    </small>
                 </div>
+                </Link>
 
                 {/* User Image */}
                 {
