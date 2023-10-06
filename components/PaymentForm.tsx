@@ -23,11 +23,31 @@ export default function PaymentForm() {
     <div className='w-full bg-white p-4'>
         <h2>Cart Totals</h2>
 
-        <div>
-            <div>
-                <p>Subtotal</p>
+        <div className='border-b-[1px] border-b-slate-300 py-2'>
+            <div className='max-w-lg flex items-center justify-between'>
+                <p className='uppercase font-medium'>Subtotal</p>
                 <p>
                     <FormattedPrice amount={totalAmount}/>
+                </p>
+            </div>
+        </div>
+
+        {/* Cost of Shipping */}
+        <div className='border-b-[1px] border-b-slate-300 py-2'>
+            <div className='max-w-lg flex items-center justify-between'>
+                <p className='uppercase font-medium'>shipping value</p>
+                <p>
+                    <FormattedPrice amount={20}/>
+                </p>
+            </div>
+        </div>
+
+        {/* Actual Totals */}
+        <div className='border-b-[1px] border-b-slate-300 py-2'>
+            <div className='max-w-lg flex items-center justify-between'>
+                <p className='uppercase font-medium'>Subtotal</p>
+                <p>
+                    <FormattedPrice amount={totalAmount + 20}/>
                 </p>
             </div>
         </div>

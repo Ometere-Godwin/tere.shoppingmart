@@ -57,6 +57,16 @@ export const shoppingSlice = createSlice({
         resetCart: (state) => {
             state.productData = [];
         },
+
+        // Adding a user
+        addUser: (state, action) => {
+            state.userInfo = action.payload;
+        },
+
+        // Delete a user
+        deleteUser: (state) => {
+            state.userInfo = null;
+        }
     },
 });
 
@@ -65,7 +75,9 @@ export const {
      increaseQuantity, 
      decreasingQuantity, 
      deleteProduct, 
-     resetCart
+     resetCart,
+     addUser,
+     deleteUser,
     } = shoppingSlice.actions;
 export default shoppingSlice.reducer;
 

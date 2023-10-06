@@ -8,14 +8,28 @@ import { FiSearch, FiLogOut} from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ProductsProps, StateProps } from '../type';
 import FormattedPrice from './FormattedPrice';
+import { addUser, deleteUser } from '@/redux/shoppingSlice'
 
 export default function Header() {
+    const dispatch = useDispatch();
     const {data:session} = useSession();
     const {productData}= useSelector((state: StateProps) => state.shopping);
     const [totalAmount, setTotalAmount] = useState(0);
+
+    useEffect(() => {
+        if (session){
+            dispatch(addUser({
+                name: session?.user?.name,
+                email: session?.user?.email,
+                image: session?.user?.image,
+            }))
+        } else {
+            dispatch(deleteUser())
+        }
+    }, [session, dispatch])
 
     useEffect(() => {
         let amount = 0;
